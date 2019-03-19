@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorAccent"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/nav_fancy_finxin"
+
+        android:title="@string/fancy_fixin" />
+
+    <item
+        android:id="@+id/nav_country_dinner"
+
+        android:title="@string/country_dinner" />
+
+    <item
+        android:id="@+id/nav_wholesome_fixings"
+
+        android:title="@string/wholesome_fixings" />
+
+    <item
+        android:id="@+id/nav_breakfast"
+
+        android:title="@string/breakfast" />
+
+    <item
+        android:id="@+id/nav_specials"
+
+        android:title="Specials"
+     />
+
+    <item
+        android:id="@+id/nav_pancakes"
+
+        android:title="@string/pancakes" />
+    <item
+        android:id="@+id/nav_sides"
+
+        android:title="@string/sides" />
+
+
+    </group>
+</menu>
