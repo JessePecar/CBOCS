@@ -64,7 +64,7 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.65"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Menu Item: "
                 android:textColor="@color/colorPrimary"
@@ -72,6 +72,7 @@
                 android:id="@+id/itemName"
                 android:layout_marginStart="10dp"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/cardRight"
                 app:layout_constraintTop_toTopOf="parent"
                 />
             <TextView

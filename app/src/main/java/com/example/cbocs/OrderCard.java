@@ -17,19 +17,33 @@ public class OrderCard {
             this.guestMeal = guestMealID;
             if(side1ID != null){
                 this.side1 = side1ID;
+            }else{
+                this.side1 = "None";
             }
             if(side2ID != null){
                 this.side2 = side2ID;
             }
+            else{
+                this.side2 = "None";
+            }
             if(side3ID != null){
                 this.side3 = side3ID;
+            }
+            else{
+                this.side3 = "None";
             }
             if(breadChoiceID != null){
                 this.breadChoice = breadChoiceID;
             }
+            else{
+                this.breadChoice = "None";
+            }
             if(notes != null){
                 this.notes = notes;
+            }else{
+                this.notes = "None";
             }
+
         }
     }
     int getGuestNum(){return guestNum;}

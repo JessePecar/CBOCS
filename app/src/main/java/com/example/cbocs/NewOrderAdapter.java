@@ -40,6 +40,11 @@ public class NewOrderAdapter extends RecyclerView.Adapter<NewOrderAdapter.NewOrd
         holder.itemName.setText(String.valueOf(item.getGuestMeal()));
         holder.side1.setText(String.valueOf(item.getGuestSide1()));
         holder.side2.setText(String.valueOf(item.getGuestSide2()));
+        if(item.getGuestSide3() == null){
+            holder.side3.setText("");
+        }else{
+            holder.side3.setText(String.valueOf(item.getGuestSide3()));
+        }
         holder.side3.setText(String.valueOf(item.getGuestSide3()));
         holder.bread.setText(String.valueOf(item.getGuestBread()));
         holder.notes.setText(String.valueOf(item.getGuestNotes()));
