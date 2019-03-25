@@ -1,6 +1,8 @@
 package com.example.cbocs;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -64,11 +66,6 @@ public class NewOrderFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 OrderHolder oH = new OrderHolder();
-                oH.myInstance().side1 = null;
-                oH.myInstance().orderName = null;
-                oH.myInstance().side2 = null;
-                oH.myInstance().side3 = null;
-                oH.myInstance().bread = null;
                 oH.myInstance().guestCount = oH.myInstance().orderList.size();
                 Intent intent = new Intent(getActivity(), ActivityNewOrder.class);
                 startActivityForResult(intent, 1);
@@ -83,6 +80,12 @@ public class NewOrderFragment extends Fragment {
                 System.out.println("INTENT DATA : " + data.getStringExtra("NEW_TEAM_ID") + " " + data.getStringExtra("NEW_TEAM_NAME") + " " + data.getStringExtra("NEW_TEAM_COMMENTS"));
                 // add the data into a new card
                 OrderHolder oH = new OrderHolder();
+                oH.myInstance().side1 = null;
+                oH.myInstance().orderName = null;
+                oH.myInstance().side2 = null;
+                oH.myInstance().side3 = null;
+                oH.myInstance().bread = null;
+
                 menuList.add(oH.myInstance().orderList.get(oH.myInstance().orderList.size() - 1));
                 ffa.notifyDataSetChanged();
             }
@@ -115,6 +118,7 @@ public class NewOrderFragment extends Fragment {
             @Override
             public void onClick(View v){
                 //do nothing
+
             }
         });
     }
@@ -124,6 +128,28 @@ public class NewOrderFragment extends Fragment {
             @Override
             public void onClick(View v){
                 //do nothing
+                AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+                builder.setCancelable(true);
+                builder.setTitle("Cancel Order");
+                builder.setMessage("Are you Sure");
+                builder.setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                menuList.clear();
+                                OrderHolder oH = new OrderHolder();
+                                oH.myInstance().orderList.clear();
+                                ffa.notifyDataSetChanged();
+                            }
+                        });
+                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
     }

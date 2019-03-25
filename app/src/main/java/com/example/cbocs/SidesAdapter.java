@@ -14,6 +14,7 @@ import java.util.List;
 public class SidesAdapter extends RecyclerView.Adapter<SidesAdapter.SidesViewHolder>{
     private Context ctx;
     List<MenuItem> menuList;
+    String pointer;
     SidesViewHolder savedSide1, savedSide2, savedSide3;
     public SidesAdapter(Context ctx, List<MenuItem> menuList){
         this.ctx = ctx;
@@ -37,61 +38,27 @@ public class SidesAdapter extends RecyclerView.Adapter<SidesAdapter.SidesViewHol
             @Override
             public void onClick(View v) {
                 //Do Something
+
                 OrderHolder orderHolder = new OrderHolder();
+                orderHolder.myInstance().pointer = "1";
                 String side = menuList.get(position).getDishName();
                 int numSides = menuList.get(position).getSideNum();
                 System.out.println(side + " : " + numSides);
                 //This is where the sides will be implemented
-                if(menuList.get(position).dishName.equals(orderHolder.myInstance().side1)){
-                    holder.cardView.setBackgroundColor(Color.parseColor("#551505"));
-                    orderHolder.myInstance().side1 = null;
-                    orderHolder.myInstance().updateText();
-                }else if(menuList.get(position).dishName.equals(orderHolder.myInstance().side2)){
-                    holder.cardView.setBackgroundColor(Color.parseColor("#551505"));
-                    orderHolder.myInstance().side2 = null;
-                    orderHolder.myInstance().updateText();
-                }else if(menuList.get(position).dishName.equals(orderHolder.myInstance().side3)){
-                    holder.cardView.setBackgroundColor(Color.parseColor("#551505"));
-                    orderHolder.myInstance().side3 = null;
+                
+                if(orderHolder.myInstance().side3 == null || orderHolder.myInstance().side3 == null || orderHolder.myInstance().side2 == null){
+                    if(orderHolder.myInstance().side1 == null){
+                        orderHolder.myInstance().side1 = menuList.get(position).dishName;
+                    }
+                    else if(orderHolder.myInstance().side2 == null){
+                        orderHolder.myInstance().side2 = menuList.get(position).dishName;
+                    }
+                    else if(orderHolder.myInstance().side3 == null){
+                        orderHolder.myInstance().side3 = menuList.get(position).dishName;
+                    }
                     orderHolder.myInstance().updateText();
                 }
-                else
-                {
-                    if(savedSide1 == null){
-                        savedSide1 = holder;
-                        orderHolder.myInstance().side1 = menuList.get(position).dishName;
-                    }else if(savedSide2 == null){
-                        savedSide2 = savedSide1;
-                        savedSide1 = holder;
-                        orderHolder.myInstance().side2 = orderHolder.myInstance().side1;
-                        orderHolder.myInstance().side1 = menuList.get(position).dishName;
-                    }else if(savedSide3 == null){
-                        savedSide3 = savedSide2;
-                        savedSide2 = savedSide1;
-                        savedSide1 = holder;
-                        orderHolder.myInstance().side3 = orderHolder.myInstance().side2;
-                        orderHolder.myInstance().side2 = orderHolder.myInstance().side1;
-                        orderHolder.myInstance().side1 = menuList.get(position).dishName;
-                    }else{
-                        savedSide3.cardView.setBackgroundColor(Color.parseColor("#551505"));
-                        savedSide3 = savedSide2;
-                        savedSide2 = savedSide1;
-                        savedSide1 = holder;
-                        orderHolder.myInstance().side3 = orderHolder.myInstance().side2;
-                        orderHolder.myInstance().side2 = orderHolder.myInstance().side1;
-                        orderHolder.myInstance().side1 = menuList.get(position).dishName;
 
-                    }
-                    holder.cardView.setBackgroundColor(Color.parseColor("#444444"));
-
-                    try{
-                        orderHolder.myInstance().updateText();
-
-                    }
-                    catch(Exception e){
-
-                    }
-                }
             }
         });
     }

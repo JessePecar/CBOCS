@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,10 +12,13 @@
     <android.support.v7.widget.CardView
 
         android:id="@+id/cardView"
-        android:layout_width="280dp"
+        android:layout_width="245dp"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:layout_margin="10dp"
+        android:padding="10dp"
+
+
 
 
         card_view:cardBackgroundColor="@color/colorAccent"
@@ -26,7 +30,8 @@
         >
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
             <TextView
                 android:id="@+id/meal"
                 android:layout_width="match_parent"
@@ -73,7 +78,8 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/side1">
+                app:layout_constraintTop_toBottomOf="@id/side1"
+                >
 
             </TextView>
             <TextView
@@ -124,6 +130,16 @@
                 app:layout_constraintTop_toBottomOf="@id/bread">
 
             </TextView>
+
+            <ImageButton
+                android:id="@+id/deleteOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorClear"
+                android:layout_margin="10dp"
+                card_view:srcCompat="@android:drawable/btn_dialog"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>

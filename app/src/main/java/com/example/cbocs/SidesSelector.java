@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import java.util.List;
 public class SidesSelector extends Fragment {
     String menuType;
     OrderHolder oH = new OrderHolder();
-
+    ImageButton delete1, delete2, delete3;
     public SidesSelector(){
 
     }
@@ -51,6 +52,11 @@ public class SidesSelector extends Fragment {
         TextView side3 = fragView.findViewById(R.id.side3);
         TextView bread = fragView.findViewById(R.id.bread);
 
+        delete1 = fragView.findViewById(R.id.deleteSide1);
+        delete2 = fragView.findViewById(R.id.deleteSide2);
+        delete3 = fragView.findViewById(R.id.deleteSide3);
+
+        configDeleters();
 
         oH.myInstance().order = itemName;
         oH.myInstance().textSide1 = side1;
@@ -111,6 +117,33 @@ public class SidesSelector extends Fragment {
         //Loop through the database to find fancy fixing and then add them to a list...
         //Make button for each item in the list...
         return fragView;
+    }
+    private void configDeleters(){
+        final OrderHolder oH = new OrderHolder();
+        delete1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                oH.myInstance().side1 = null;
+                oH.myInstance().pointer = "1";
+                oH.myInstance().updateText();
+            }
+        });
+        delete2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                oH.myInstance().side2 = null;
+                oH.myInstance().pointer = "2";
+                oH.myInstance().updateText();
+            }
+        });
+        delete3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                oH.myInstance().side3 = null;
+                oH.myInstance().pointer = "3";
+                oH.myInstance().updateText();
+            }
+        });
     }
     public void configConfirm(View view){
         Button conf = view.findViewById(R.id.confirm);

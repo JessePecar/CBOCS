@@ -10,7 +10,7 @@ public class OrderHolder extends Application {
 
     List<OrderCard> orderList = new ArrayList<>();
     String orderName, menuType;
-    String side1 = null, side2 = null, side3 = null, bread = null;
+    String side1 = null, side2 = null, side3 = null, bread = null, pointer = "1";
     int numSides, guestCount;
     NewOrderAdapter noa;
     ActivityNewOrder ano;

@@ -7,8 +7,8 @@ public class MenuScript {
         //Clear the existing database, then loop to add all the items.
         mD.onUpgrade(mD.getWritableDatabase(),0,1);
 
-        String[] menuItems = {"Roast Beef", "Country Fried Steak", "Meatloaf", "10oz Rib Eye Steak",
-                                "Grilled Sirloin Steak", "CB Sampler SGH","CB Sampler COH", "Half-Pound Hamburger Steak",
+        String[] menuItems = {"Roast Beef", "Country Fried Steak", "Meatloaf", "Ribeye",
+                                "Grilled Sirloin", "CB Sampler SGH","CB Sampler COH", "Hamburger Steak",
                                 "Chicken 'n' Dumplins(3)", "Chicken 'n' Dumplins(2)","Grilled Tenders(6)",
                                 "Grilled Tenders(4)", "Fried Tenders(6)", "Fried Tenders(4)",
                                 "Chicken Fried Chicken", "Apple Cider BBQ Chicken", "Fried Chicken Livers",
@@ -68,7 +68,7 @@ public class MenuScript {
         for(int i = 0; i < menuItems.length; i++){
             mD.addMenuItem(menuItems[i], avail[i], sideCount[i], menuType[i]);
         }
-        String[] sides = {"Fried Apples","Homestyle Fries","Fried Okra","Brussel Sprouts 'n' Kayle Salad","Cole Slaw",
+        String[] sides = {"Fried Apples","Homestyle Fries","Fried Okra","Brussel Sprouts 'n' Kale Salad","Cole Slaw",
                         "Carrots","Hashbrown Casserole","$Loaded Hashbrown Casserole","Broccoli","Corn",
                         "Turnip Greens","Macaroni'n'Cheese","Green Beans","Mash Brown","Mashed Potatoes",
                         "Mashed White","Fruit Cup","Apple Slices","Pinto Beans","Dumplins","$Baked Potato","$Baked Sweet Potato",

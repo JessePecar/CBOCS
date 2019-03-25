@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ public class MenuItemSelector extends Fragment {
         oH.myInstance().menuType = menuType;
         oH.myInstance().guestCount++;
     }
+    ImageButton delete1, delete2, delete3;
     private FancyFixinAdapter ffa;
     List<MenuItem> menuList;
     ConstraintLayout constraintLayout;
@@ -52,6 +55,10 @@ public class MenuItemSelector extends Fragment {
         TextView side2 = fragView.findViewById(R.id.side2);
         TextView side3 = fragView.findViewById(R.id.side3);
         TextView bread = fragView.findViewById(R.id.bread);
+
+        delete1 = fragView.findViewById(R.id.deleteSide1);
+        delete2 = fragView.findViewById(R.id.deleteSide2);
+        delete3 = fragView.findViewById(R.id.deleteSide3);
 
 
         oH.myInstance().order = itemName;
@@ -114,23 +121,97 @@ public class MenuItemSelector extends Fragment {
         //Make button for each item in the list...
         return fragView;
     }
+    private void configDeleters(){
+        final OrderHolder oH = new OrderHolder();
+        delete1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                oH.myInstance().side1 = "";
+                oH.myInstance().updateText();
+            }
+        });
+        delete2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                oH.myInstance().side2 = "";
+                oH.myInstance().updateText();
+            }
+        });
+        delete3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                oH.myInstance().side3 = "";
+                oH.myInstance().updateText();
+            }
+        });
+    }
     public void configConfirm(View view){
-        Button conf = view.findViewById(R.id.confirm);
+        final Button conf = view.findViewById(R.id.confirm);
         conf.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                OrderHolder oH = new OrderHolder();
+                final OrderHolder oH = new OrderHolder();
                 int nS = oH.numSides;
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                final FragmentTransaction ft = getFragmentManager().beginTransaction();
 
                 //I will make a dedicated screen for selecting the sides, it will keep track of the sides while selecting
 
                 if(oH.myInstance().orderName != null){
                     //I will run a unique fragment that will ask for the sides needed, it will be very similar to the current side selector
                     //but will hae a different adapter
-                    ft.replace(R.id.fragment_container, new SidesSelector());
-                    ft.addToBackStack(null);
-                    ft.commit();
+                    if(oH.myInstance().orderName.equals("Hamburger Steak")
+                            || oH.myInstance().orderName.equals("Ribeye")
+                            ||oH.myInstance().orderName.equals("Grilled Sirloin")){
+                        PopupMenu pop = new PopupMenu(getContext(), conf);
+                        pop.getMenuInflater()
+                                .inflate(R.menu.pop_menu, pop.getMenu());
+                        pop.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(android.view.MenuItem item) {
+                                switch(item.getItemId()){
+                                    case (R.id.rare):
+                                        oH.myInstance().orderName += "(Rare)";
+                                        ft.replace(R.id.fragment_container, new SidesSelector());
+                                        ft.addToBackStack(null);
+                                        ft.commit();
+                                        break;
+                                    case (R.id.medium_rare):
+                                        oH.myInstance().orderName += "(Medium Rare)";
+                                        ft.replace(R.id.fragment_container, new SidesSelector());
+                                        ft.addToBackStack(null);
+                                        ft.commit();
+                                        break;
+                                    case (R.id.medium):
+                                        oH.myInstance().orderName += "(Medium)";
+                                        ft.replace(R.id.fragment_container, new SidesSelector());
+                                        ft.addToBackStack(null);
+                                        ft.commit();
+                                        break;
+                                    case (R.id.medium_well):
+                                        oH.myInstance().orderName += "(Medium Well)";
+                                        ft.replace(R.id.fragment_container, new SidesSelector());
+                                        ft.addToBackStack(null);
+                                        ft.commit();
+                                        break;
+                                    case (R.id.well):
+                                        oH.myInstance().orderName += "(Well)";
+                                        ft.replace(R.id.fragment_container, new SidesSelector());
+                                        ft.addToBackStack(null);
+                                        ft.commit();
+                                        break;
+
+                                }
+                                return true;
+                            }
+                        });
+                        pop.show();
+                    }
+                    else{
+                        ft.replace(R.id.fragment_container, new SidesSelector());
+                        ft.addToBackStack(null);
+                        ft.commit();
+                    }
+
                 }
                 else{
                     //Do Nothing
